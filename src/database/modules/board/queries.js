@@ -3,48 +3,57 @@ import Database from '../../database';
 
 const database = new Database();
 
+// Insert new board
 export const insert = (board, onSuccess, onError) => {
    const res =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS)
     .add(board);
 
     res.onsuccess = (event) => {
-        onSuccess(event);
+        if(onSuccess !== undefined)
+            onSuccess(event);
     }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
 
+// Get all boards
 export const getAll = (onSuccess, onError) => {
     const res =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS)
     .getAll();
 
     res.onsuccess = (event) => {
-        onSuccess(event.target.result   );
-    }
+        if(onSuccess !== undefined)
+            onSuccess(event)    }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
 
+// Delete a board
 export const remove = (id, onSuccess, onError) => {
     const res =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS)
     .delete(id);
 
     res.onsuccess = (event) => {
-        onSuccess(event);
+        if(onSuccess !== undefined)
+            onSuccess(event)
     }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
 
+// Update board title
 export const updateTitle = (id, title, onSuccess, onError) => {
     const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS)
@@ -58,10 +67,12 @@ export const updateTitle = (id, title, onSuccess, onError) => {
     }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
 
+// Board update private helper method
 const update = (store, board, onSuccess, onError) => {
 
     const res = store.put(board);
@@ -77,6 +88,7 @@ const update = (store, board, onSuccess, onError) => {
     }
 }
 
+// Update column in board 
 export const updateColumn = (boardId, columnId, position, onSuccess, onError) => {
     const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS);
@@ -95,10 +107,12 @@ export const updateColumn = (boardId, columnId, position, onSuccess, onError) =>
     }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
 
+// Delete column form board
 export const removeColumn = (boardId, columnId, onSuccess, onError) => {
     const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS);
@@ -108,15 +122,17 @@ export const removeColumn = (boardId, columnId, onSuccess, onError) => {
     res.onsuccess = (event) => {
         const board = event.target.result;
 
-        if(board.columns !== undefined && board.columns[columnId]){
+        if(board.columns !== undefined && columnId in board.columns){
             delete board.columns[columnId]
             update(store, board, onSuccess, onError);
         } else {
-            onSuccess(event);
+            if(onSuccess !== undefined)
+                onSuccess(event)
         } 
     }
 
     res.onerror = (event) => {
-        onError(event);
+        if(onError !== undefined)
+            onError(event);
     }
 }
