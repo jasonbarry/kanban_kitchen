@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" href="../src/styles/index.css" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -37,8 +38,8 @@
       }
 
       class User {
-        constructor() {
-          this.name = "demo";
+        constructor(name) {
+          this.name = name;
           this.email = "demo@gmail.com";
           this.role = new Role();
         }
@@ -48,28 +49,39 @@
       const request = indexedDB.open("demo");
       request.onupgradeneeded = (e) => {
 
-       
+         //get db
+         const db = e.target.result;
 
-        alert(`Upgraded! ${e.target.result.name}`)
+         // create object store
+         db.createObjectStore("users", { autoIncrement : true });
       }
       
       request.onsuccess = (e) => {
-        alert(`Success!: ${e.target.result.name}`)
 
-         //creating store
+         //get db
          const db = e.target.result;
         
-        const objectStore = db.createObjectStore("user", {autoIncrement: true});
+         // get transaction object
+        const t = db.transaction(["users"], "readwrite");
 
-        objectStore.add(new User());
-
-        db.onsuccess = ()=> {
-          alert("User created!")
+        
+        t.onsuccess = ()=> {
+          alert("Tracsaction Successful!!")
         }
 
-        db.onerror = (err)=> {
+        t.onerror = (err)=> {
           alert("Error: "+ JSON.stringify(err));
         }
+
+        //writting to users store
+        const userStore = t.objectStore("users");
+        userStore.add(new User("demo"));
+        userStore.add(new User("demo1"));
+        userStore.add(new User("demo2"));
+
+
+        // reading from users store
+
       }
 
       request.onerror = (e) => {
