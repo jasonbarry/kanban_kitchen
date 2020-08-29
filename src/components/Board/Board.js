@@ -7,12 +7,24 @@ class Board extends React.Component {
     return (
       <div className="Board">
         <ul className="scroll">
-          <li><Column /></li>
-          <li><Column /></li>
-          <li><Column /></li>
-          <li><Column /></li>
-          <li><Column /></li>
-          <li><Column /></li>
+          <li>
+            <Column />
+          </li>
+          <li>
+            <Column />
+          </li>
+          <li>
+            <Column />
+          </li>
+          <li>
+            <Column />
+          </li>
+          <li>
+            <Column />
+          </li>
+          <li>
+            <Column />
+          </li>
         </ul>
       </div>
     )
