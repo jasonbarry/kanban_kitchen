@@ -11,5 +11,7 @@ export default class Column {
         this.title = title;
         this.position = position;
         this.cards = cards;
+        this.createdAt = new Date().getTime();
+        this.updatedAt = new Date().getTime();
     }
 }
