@@ -5,7 +5,10 @@
 
 @media only screen and (max-width: 480px) {
   .Header {
-    background-color: yellow;
+    background-color: orange;
+    position: sticky;
+    word-wrap: none;
+    max-width: 480px;
     height: 90px;
     text-align: center;
   }
