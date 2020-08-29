@@ -1,6 +1,6 @@
 import React from 'react';
 import './Card.css';
-import { DragSource } from 'react-dnd';
+import { DragSource, DragPreviewImage } from 'react-dnd';
 import { Types } from '../../utils/types';
 import classNames from 'classnames';
 
@@ -10,6 +10,14 @@ const cardSource = {
     // Return the data describing the dragged item
     const item = { cardId: props.id }
     return item
+  },
+
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      return;
+    }
+
+    alert('Card has been dropped!');
   }
 }
 
@@ -35,15 +43,18 @@ class Card extends React.Component {
   }
 
   render() {
-    const { id, isDragging, connectDragSource } = this.props;
+    const { id, isDragging, connectDragSource, connectDragPreview } = this.props;
 
     return connectDragSource(
-      <div className={classNames({
-        'Card': true,
-        'Card-is-dragging': isDragging,
-      })}>
-        <h1>Title</h1>
-        <p>My draggable card id is: {id}</p>
+      <div>
+        <DragPreviewImage src='../../public/favicon.ico' connect={connectDragPreview}/>
+        <div className={classNames({
+          'Card': true,
+          'Card-is-dragging': isDragging,
+        })}>
+          <h1>Title</h1>
+          <p>My draggable card id is: {id}</p>
+        </div>
       </div>
     )
   }

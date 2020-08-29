@@ -18,6 +18,7 @@ const columnSource = {
  */
 function collect(connect, monitor) {
   return {
+    isOver: monitor.isOver(),
     connectDropTarget: connect.dropTarget()
   }
 }
@@ -30,12 +31,13 @@ class Column extends React.Component {
   
   
   render() {
-    const {  highlighted, hovered, connectDropTarget } = this.props;
+    const {  highlighted, hovered, connectDropTarget, isOver } = this.props;
     return connectDropTarget(
       <div className={classNames({
         'Column': true,
         'Column-highlighted': highlighted,
-        'Column-hovered': hovered
+        'Column-hovered': hovered,
+        'Column-is-over': isOver
       })}>
         <Card 
           id={1}
