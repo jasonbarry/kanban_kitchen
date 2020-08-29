@@ -40,7 +40,7 @@
       class User {
         constructor(name) {
           this.name = name;
-          this.email = "demo@gmail.com";
+          this.email = name+"@gmail.com";
           this.role = new Role();
         }
       }
@@ -53,7 +53,7 @@
          const db = e.target.result;
 
          // create object store
-         db.createObjectStore("users", { autoIncrement : true });
+         db.createObjectStore("users", { keyPath: 'name' });
       }
       
       request.onsuccess = (e) => {
@@ -62,25 +62,32 @@
          const db = e.target.result;
         
          // get transaction object
-        const t = db.transaction(["users"], "readwrite");
+        // const t = db.transaction(["users"], "readwrite");
 
         
-        t.onsuccess = ()=> {
-          alert("Tracsaction Successful!!")
-        }
+        // t.onsuccess = ()=> {
+        //   alert("Tracsaction Successful!!")
+        // }
 
-        t.onerror = (err)=> {
-          alert("Error: "+ JSON.stringify(err));
-        }
+        // t.onerror = (err)=> {
+          
+        // }
 
-        //writting to users store
-        const userStore = t.objectStore("users");
-        userStore.add(new User("demo"));
-        userStore.add(new User("demo1"));
-        userStore.add(new User("demo2"));
+        // //writting to users store
+        // const userStore = t.objectStore("users");
+        // userStore.add(new User("demo"));
+        // userStore.add(new User("demo1"));
+        // userStore.add(new User("demo2"));
+
+        // delete the user 
+        db.transaction("users").objectStore("users").delete("demo");
+
 
 
         // reading from users store
+        // db.transaction("users").objectStore("users").getKey(1).onsuccess = (e)=> {
+        //     console.log("result: "+ JSON.stringify(e.target.result)); 
+        // }
 
       }
 
