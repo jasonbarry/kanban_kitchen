@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-.Column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  border: 3px solid black;
-  background-color: green;
-  width: 20%;
-  overflow: hidden;
-  overscroll-behavior-y: scroll;
-}
-
-@media only screen and (max-width: 480px) {
-  .Column {
-    scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    border: 3px solid black;
-    background-color: purple;
-    width: 360px;
-    height: 100%;
-    overflow: hidden;
-    overflow-x: scroll;
-    margin: 0 10px;
-  }
-=======
 .Column {
   display: flex;
   flex-direction: column;
@@ -57,5 +29,4 @@
     overflow-x: scroll;
     margin: 0 10px;
   }
->>>>>>> master
 }
