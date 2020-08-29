@@ -1,15 +1,52 @@
 import React from 'react';
 import './Card.css';
+import { DragSource } from 'react-dnd';
+import { Types } from '../../utils/types';
+import classNames from 'classnames';
+
+// A collection of all the functions the draggable item holds
+const cardSource = {
+  beginDrag(props) {
+    // Return the data describing the dragged item
+    const item = { cardId: props.id }
+    return item
+  }
+}
+
+/**
+ * Specifies which props to inject into your component.
+ */
+function collect(connect, monitor) {
+  return {
+    // Call this function inside render()
+    // to let React DnD handle the drag events:
+    canDrag: monitor.canDrag(),
+    // You can ask the monitor about the current drag state:
+    isDragging: monitor.isDragging(),
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview()
+  }
+}
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
-    return(
-      <div className="Card">
+    const { id, isDragging, connectDragSource } = this.props;
+
+    return connectDragSource(
+      <div className={classNames({
+        'Card': true,
+        'Card-is-dragging': isDragging,
+      })}>
         <h1>Title</h1>
-        <p>description</p>
+        <p>My draggable card id is: {id}</p>
       </div>
     )
   }
 }
 
-export default Card;
+export default DragSource(Types.CARD, cardSource, collect)(Card);

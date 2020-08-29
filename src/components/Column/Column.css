@@ -5,9 +5,11 @@
   align-items: center;
   border: 3px solid black;
   background-color: green;
-  width: 20%;
-  overflow: hidden;
-  overscroll-behavior-y: scroll;
+  width: 300px;
+  height: fit-content;
+  margin: 0 10px;
+  /* overflow: hidden;
+  overscroll-behavior-y: scroll; */
 }
 
 @media only screen and (max-width: 480px) {
