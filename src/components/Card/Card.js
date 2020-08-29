@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './Card.css';
-
-class Card extends React.Component {
-  render() {
-    return(
-      <div className="Card">
-        <h1>Title</h1>
-        <p>description</p>
-      </div>
-    )
-  }
-}
-
-export default Card;
-=======
 import React from 'react';
 import './Card.css';
 import { DragSource, DragPreviewImage } from 'react-dnd';
@@ -78,4 +61,3 @@ class Card extends React.Component {
 }
 
 export default DragSource(Types.CARD, cardSource, collect)(Card);
->>>>>>> master
