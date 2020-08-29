@@ -20,6 +20,24 @@ export const insert = (board, onSuccess, onError) => {
     }
 }
 
+// Get one board
+export const getOne = (boardId, onSuccess, onError) => {
+    const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
+    .objectStore(config.stores.BOARDS)
+
+    const res = store.get(boardId);
+
+    res.onsuccess = (event) => {
+        if(onSuccess !== undefined)
+            onSuccess(event.target.result);
+    }
+
+    res.onerror = (event) => {
+        if(onError !== undefined)
+            onError(event);
+    }
+}
+
 // Get all boards
 export const getAll = (onSuccess, onError) => {
     const res =  database.instance.transaction([config.stores.BOARDS], "readwrite")
@@ -28,7 +46,7 @@ export const getAll = (onSuccess, onError) => {
 
     res.onsuccess = (event) => {
         if(onSuccess !== undefined)
-            onSuccess(event)    }
+            onSuccess(event.target.result)    }
 
     res.onerror = (event) => {
         if(onError !== undefined)
