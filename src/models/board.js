@@ -12,5 +12,7 @@ export default class Board {
         this.id = hashCode(title);
         this.title = title;
         this.columns = columns;
+        this.createdAt = new Date().getTime();
+        this.updatedAt = new Date().getTime();
     }
 }

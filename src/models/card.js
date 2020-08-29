@@ -1,3 +1,4 @@
+import { hashCode } from "../utils/helper";
 
 
 export default class Card {
@@ -11,6 +12,7 @@ export default class Card {
      * @param {position of the card in the column} position 
      */
     constructor(columnId, title, description, images, position){
+        this.id = hashCode(title);
         this.columnId = columnId;
         this.title = title;
         this.description = description;
