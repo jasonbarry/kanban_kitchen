@@ -1,7 +1,21 @@
+<<<<<<< HEAD
 .Card {
   background-color: white;
   width: 95%;
   text-align: center;
   padding: 10px;
   border: 1px solid black;
+=======
+.Card {
+  background-color: white;
+  width: 95%;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px 0;
+}
+
+.Card-is-dragging {
+  color: red;
+>>>>>>> master
 }
