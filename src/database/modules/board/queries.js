@@ -107,7 +107,7 @@ const update = (store, board, onSuccess, onError) => {
 }
 
 // Update column in board 
-export const updateColumn = (boardId, columnId, position, onSuccess, onError) => {
+export const addColumn = (boardId, columnId, position, onSuccess, onError) => {
     const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS);
 
@@ -117,10 +117,10 @@ export const updateColumn = (boardId, columnId, position, onSuccess, onError) =>
         const board = event.target.result;
 
         if(board.columns === undefined){
-            board.columns = {};
+            board.columns = [];
         }
 
-        board.columns[columnId] = position;
+        board.columns.splice(position, 0, columnId);
         update(store, board, onSuccess, onError);
     }
 
@@ -131,7 +131,7 @@ export const updateColumn = (boardId, columnId, position, onSuccess, onError) =>
 }
 
 // Delete column form board
-export const removeColumn = (boardId, columnId, onSuccess, onError) => {
+export const removeColumn = (boardId, position, onSuccess, onError) => {
     const store =  database.instance.transaction([config.stores.BOARDS], "readwrite")
     .objectStore(config.stores.BOARDS);
 
@@ -140,8 +140,8 @@ export const removeColumn = (boardId, columnId, onSuccess, onError) => {
     res.onsuccess = (event) => {
         const board = event.target.result;
 
-        if(board.columns !== undefined && columnId in board.columns){
-            delete board.columns[columnId]
+        if(board.columns !== undefined){
+            board.columns.splice(position, 1);
             update(store, board, onSuccess, onError);
         } else {
             if(onSuccess !== undefined)
