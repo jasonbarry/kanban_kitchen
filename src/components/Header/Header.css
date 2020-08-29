@@ -2,3 +2,11 @@
   background-color: yellow;
   height: 90px;
 }
+
+@media only screen and (max-width: 480px) {
+  .Header {
+    background-color: yellow;
+    height: 90px;
+    text-align: center;
+  }
+}

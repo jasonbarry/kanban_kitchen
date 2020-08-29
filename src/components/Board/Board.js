@@ -6,9 +6,14 @@ class Board extends React.Component {
   render() {
     return (
       <div className="Board">
-        <Column />
-        <Column />
-        <Column />
+        <ul className="scroll">
+          <li><Column /></li>
+          <li><Column /></li>
+          <li><Column /></li>
+          <li><Column /></li>
+          <li><Column /></li>
+          <li><Column /></li>
+        </ul>
       </div>
     )
   }
