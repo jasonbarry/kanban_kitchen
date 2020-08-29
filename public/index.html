@@ -30,70 +30,70 @@
   <body>
     <script>
 
-      // classes
-      class Role {
-        constructor(){
-          this.type = "user";
-        }
-      }
+      // // classes
+      // class Role {
+      //   constructor(){
+      //     this.type = "user";
+      //   }
+      // }
 
-      class User {
-        constructor(name) {
-          this.name = name;
-          this.email = name+"@gmail.com";
-          this.role = new Role();
-        }
-      }
+      // class User {
+      //   constructor(name) {
+      //     this.name = name;
+      //     this.email = name+"@gmail.com";
+      //     this.role = new Role();
+      //   }
+      // }
 
-      // db
-      const request = indexedDB.open("demo");
-      request.onupgradeneeded = (e) => {
+      // // db
+      // const request = indexedDB.open("demo");
+      // request.onupgradeneeded = (e) => {
 
-         //get db
-         const db = e.target.result;
+      //    //get db
+      //    const db = e.target.result;
 
-         // create object store
-         db.createObjectStore("users", { keyPath: 'name' });
-      }
+      //    // create object store
+      //    db.createObjectStore("users", { keyPath: 'name' });
+      // }
       
-      request.onsuccess = (e) => {
+      // request.onsuccess = (e) => {
 
-         //get db
-         const db = e.target.result;
+      //    //get db
+      //    const db = e.target.result;
         
-         // get transaction object
-        // const t = db.transaction(["users"], "readwrite");
+      //    // get transaction object
+      //   // const t = db.transaction(["users"], "readwrite");
 
         
-        // t.onsuccess = ()=> {
-        //   alert("Tracsaction Successful!!")
-        // }
+      //   // t.onsuccess = ()=> {
+      //   //   alert("Tracsaction Successful!!")
+      //   // }
 
-        // t.onerror = (err)=> {
+      //   // t.onerror = (err)=> {
           
-        // }
+      //   // }
 
-        // //writting to users store
-        // const userStore = t.objectStore("users");
-        // userStore.add(new User("demo"));
-        // userStore.add(new User("demo1"));
-        // userStore.add(new User("demo2"));
+      //   // //writting to users store
+      //   // const userStore = t.objectStore("users");
+      //   // userStore.add(new User("demo"));
+      //   // userStore.add(new User("demo1"));
+      //   // userStore.add(new User("demo2"));
 
-        // delete the user 
-        db.transaction("users").objectStore("users").delete("demo");
+      //   // delete the user 
+      //   db.transaction("users").objectStore("users").delete("demo");
 
 
 
-        // reading from users store
-        // db.transaction("users").objectStore("users").getKey(1).onsuccess = (e)=> {
-        //     console.log("result: "+ JSON.stringify(e.target.result)); 
-        // }
+      //   // reading from users store
+      //   // db.transaction("users").objectStore("users").getKey(1).onsuccess = (e)=> {
+      //   //     console.log("result: "+ JSON.stringify(e.target.result)); 
+      //   // }
 
-      }
+      // }
 
-      request.onerror = (e) => {
+      // request.onerror = (e) => {
 
-      }
+      // }
       </script>
     <div id="root"></div>
   </body>

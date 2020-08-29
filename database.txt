@@ -1,92 +1,115 @@
 db {
+  "board": {
+    1: {
+      id: 1,
+      title: "Cooking Project",
+      columns{
+        "Raw": 0,
+        "Cooked": "1",
+        "Well Done": "2"
+      },
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
+    }
+  },
   "columns": {
     1: {
       id: 1,
       title: "Raw",
       position: 0,
+      boardId: 1,
       cards: {
         1: "Create Component",
         2: "Finish Design",
-        3: "Call mom",
+        3: "Call mom"
+      },
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     2: {
       id: 2,
       title: "Cooked",
       position: 1,
+      boardId: 1,
       cards: {
         4: "Finish boilerplate for Component",
         5: "Install Saas",
-      }
+      },
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     3: {
       id: 3,
       title: "Well Done",
       position: 2,
+      boardId: 1,
       cards: {
         6: "Schema Complete",
-      }
+      },
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     }
   },
   "cards": {
     1: {
       id: 1,
-      column_id: 1,
+      columnId: 1,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     2: {
       id: 2,
-      column_id: 1,
+      columnId: 1,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     3: {
       id: 3,
-      column_id: 1,
+      columnId: 1,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     4: {
       id: 4,
-      column_id: 2,
+      columnId: 2,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     5: {
       id: 5,
-      column_id: 2,
+      columnId: 2,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
     6: {
       id: 6,
-      column_id: 3,
+      columnId: 3,
       title: "Create Component",
       description: "We need to make this component"
       images: ["url1", "url2", "url3"],
       position: 0,
-      created_at: 12043122323323,
-      updated_at: 38450385020200,
+      createdAt: 12043122323323,
+      updatedAt: 38450385020200,
     },
   }
 }
