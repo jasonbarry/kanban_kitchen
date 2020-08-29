@@ -27,17 +27,55 @@
     <title>kanban_kitchen</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+
+      // classes
+      class Role {
+        constructor(){
+          this.type = "user";
+        }
+      }
+
+      class User {
+        constructor() {
+          this.name = "demo";
+          this.email = "demo@gmail.com";
+          this.role = new Role();
+        }
+      }
+
+      // db
+      const request = indexedDB.open("demo");
+      request.onupgradeneeded = (e) => {
+
+       
+
+        alert(`Upgraded! ${e.target.result.name}`)
+      }
+      
+      request.onsuccess = (e) => {
+        alert(`Success!: ${e.target.result.name}`)
+
+         //creating store
+         const db = e.target.result;
+        
+        const objectStore = db.createObjectStore("user", {autoIncrement: true});
+
+        objectStore.add(new User());
+
+        db.onsuccess = ()=> {
+          alert("User created!")
+        }
+
+        db.onerror = (err)=> {
+          alert("Error: "+ JSON.stringify(err));
+        }
+      }
+
+      request.onerror = (e) => {
+
+      }
+      </script>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
